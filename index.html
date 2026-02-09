@@ -99,33 +99,6 @@
     .delay-300 {
       animation-delay: 300ms;
     }
-
-    @media print {
-      @page {
-        margin: 1.5cm 1cm;
-      }
-
-      body {
-        background-color: white;
-        color: black;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .no-print {
-        display: none !important;
-      }
-
-      .print-break-inside-avoid {
-        break-inside: avoid;
-        page-break-inside: avoid;
-      }
-
-      /* Force progress bars to show correct width in print, bypassing animation state */
-      .print-force-width {
-        width: var(--print-width) !important;
-      }
-    }
   </style>
 
   <link rel="stylesheet" href="/index.css">

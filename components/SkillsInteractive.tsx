@@ -34,15 +34,15 @@ const SkillsInteractive: React.FC = () => {
       {SKILLS.map((category, idx) => {
         const Icon = ICONS[idx] || Brain;
         return (
-          <div 
-            key={idx} 
-            className="bg-slate-50/80 rounded-xl p-6 border border-slate-200 hover:border-accent-200 hover:bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group print:break-inside-avoid print:border-slate-300 print:bg-white"
+          <div
+            key={idx}
+            className="bg-slate-50/80 rounded-xl p-6 border border-slate-200 hover:border-accent-200 hover:bg-white hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group print:break-inside-avoid"
           >
             <div className="flex items-center gap-3 mb-6 border-b border-slate-200 pb-3">
-              <div className="p-2 rounded-lg bg-white shadow-sm border border-slate-100 text-accent-500 group-hover:text-accent-600 group-hover:scale-110 transition-all duration-300 print:border-slate-200">
+              <div className="p-2 rounded-lg bg-white shadow-sm border border-slate-100 text-accent-500 group-hover:text-accent-600 group-hover:scale-110 transition-all duration-300">
                 <Icon size={20} />
               </div>
-              <h3 className="text-lg font-bold text-slate-800 uppercase tracking-wide print:text-black">
+              <h3 className="text-lg font-bold text-slate-800 uppercase tracking-wide">
                 {category.category}
               </h3>
             </div>
@@ -51,31 +51,31 @@ const SkillsInteractive: React.FC = () => {
               {category.skills.map((skill, sIdx) => (
                 <div key={sIdx}>
                   <div className="flex justify-between items-end mb-1.5">
-                    <span className="font-semibold text-slate-700 text-sm md:text-base print:text-black">
+                    <span className="font-semibold text-slate-700 text-sm md:text-base">
                       {skill.name}
                     </span>
-                    <span className="text-xs text-accent-500 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 print:opacity-100 print:text-black">
+                    <span className="text-xs text-accent-500 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {skill.level}%
                     </span>
                   </div>
-                  
+
                   {/* Progress Bar Background */}
-                  <div className="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden print:bg-slate-100 print:border print:border-slate-200">
+                  <div className="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
                     {/* Animated Progress Bar */}
-                    <div 
-                      className="h-full rounded-full bg-gradient-to-r from-primary-400 to-accent-400 relative print-force-width print:bg-none print:bg-black"
-                      style={{ 
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-primary-400 to-accent-400 relative print-force-width"
+                      style={{
                         '--print-width': `${skill.level}%`,
                         width: isVisible ? `${skill.level}%` : '0%',
-                        transition: `width 1s ease-out ${sIdx * 0.1}s` 
+                        transition: `width 1s ease-out ${sIdx * 0.1}s`
                       } as React.CSSProperties}
                     >
-                        {/* Shine effect - hidden in print */}
-                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/20 to-transparent no-print"></div>
+                      {/* Shine effect - hidden in print */}
+                      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/20 to-transparent no-print"></div>
                     </div>
                   </div>
-                  
-                  <p className="text-xs text-slate-500 mt-1.5 font-medium truncate print:text-slate-600">
+
+                  <p className="text-xs text-slate-500 mt-1.5 font-medium truncate">
                     {skill.details}
                   </p>
                 </div>
