@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
 import { MessageSquare, X, Send, Loader2, User, Bot, Mic, Volume2, VolumeX } from 'lucide-react';
-import { 
-  PROFILE_TEXT, 
-  EXPERIENCES, 
-  EDUCATION, 
-  SKILLS, 
-  PROJECTS, 
-  CONTACT, 
+import {
+  PROFILE_TEXT,
+  EXPERIENCES,
+  EDUCATION,
+  SKILLS,
+  PROJECTS,
+  CONTACT,
   ENGAGEMENTS,
   INTERESTS,
   LANGUAGES
@@ -34,11 +34,12 @@ TON OBJECTIF :
 Répondre aux questions sur ton parcours, tes compétences et tes projets de manière professionnelle, enthousiaste et précise, en te basant STRICTEMENT sur le contexte JSON fourni ci-dessous.
 
 RÈGLES DE PERSONNALITÉ :
-1. Parle à la première personne ("Je", "Mon parcours").
+1. Parle en français, (en anglais lorsque l'interlocuteur le demande) à la première personne ("Je", "Mon parcours").
 2. Sois concis mais informatif. (Idéal pour la synthèse vocale : ne fais pas de réponses trop longues sauf si nécessaire).
 3. Mets en avant ta double compétence technique (IA/Dev/Sysadmin) et Business.
 4. Si on te demande une info qui n'est pas dans le CV, dis poliment que tu ne l'as pas précisé ici mais que tu serais ravi d'en discuter de vive voix (propose ton email ou LinkedIn).
-5. Ton ton est courtois, dynamique et "tech-savvy".
+5. Ton ton est courtois, dynamique et "tech-savvy"
+6. Fais des phrases courtes, ne rédige pas trop de texte, ça doit etre un rendu un peu sms. N'utilise pas l'étoile * car l'affichage n'est pas bon. 
 
 CONTEXTE DU CV :
 ${CV_CONTEXT}
@@ -65,16 +66,16 @@ const Chatbot: React.FC = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
+
   // Voice State
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const recognitionRef = useRef<any>(null);
-  
+
   // Use refs to access latest state in callbacks
   const chatSessionRef = useRef<Chat | null>(null);
-  
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -113,7 +114,7 @@ const Chatbot: React.FC = () => {
 
       recognition.onstart = () => setIsListening(true);
       recognition.onend = () => setIsListening(false);
-      
+
       recognition.onresult = (event: any) => {
         const transcript = event.results[0][0].transcript;
         if (transcript) {
@@ -134,7 +135,7 @@ const Chatbot: React.FC = () => {
 
   const speakText = (text: string) => {
     if (!voiceEnabled || !window.speechSynthesis) return;
-    
+
     // Stop any current speech
     window.speechSynthesis.cancel();
 
@@ -182,14 +183,14 @@ const Chatbot: React.FC = () => {
     window.speechSynthesis.cancel();
 
     if (!manualText) setInput(''); // Clear input if not manual
-    
+
     setMessages(prev => [...prev, { role: 'user', text: textToSend }]);
     setIsLoading(true);
 
     try {
       const result: GenerateContentResponse = await chatSessionRef.current.sendMessage({ message: textToSend });
       const responseText = result.text || "Désolé, je n'ai pas pu générer de réponse pour le moment.";
-      
+
       setMessages(prev => [...prev, { role: 'model', text: responseText }]);
       speakText(responseText);
     } catch (error) {
@@ -211,9 +212,9 @@ const Chatbot: React.FC = () => {
     <>
       {/* Floating Button with Tooltip */}
       <div className="fixed bottom-6 right-6 z-50 flex items-center gap-4 no-print group">
-         <span className={`bg-white text-slate-700 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md border border-slate-100 transition-all duration-300 origin-right ${isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100 group-hover:-translate-x-2'}`}>
-            Parler à l'IA d'Isaac
-         </span>
+        <span className={`bg-white text-slate-700 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md border border-slate-100 transition-all duration-300 origin-right ${isOpen ? 'scale-0 opacity-0' : 'scale-100 opacity-100 group-hover:-translate-x-2'}`}>
+          Parler à l'IA d'Isaac
+        </span>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`p-4 rounded-full shadow-xl transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center 
@@ -225,7 +226,7 @@ const Chatbot: React.FC = () => {
       </div>
 
       {/* Chat Window */}
-      <div 
+      <div
         className={`fixed bottom-24 right-6 w-[90vw] md:w-[400px] bg-white border border-slate-200 rounded-2xl shadow-2xl z-50 flex flex-col transition-all duration-300 origin-bottom-right overflow-hidden no-print
           ${isOpen ? 'scale-100 opacity-100' : 'scale-0 opacity-0 pointer-events-none'}
         `}
@@ -240,14 +241,14 @@ const Chatbot: React.FC = () => {
             <div>
               <h3 className="font-bold text-slate-800">Isaac Derhy (AI)</h3>
               <p className="text-xs text-slate-500 font-medium flex items-center gap-1">
-                 Posez-lui toutes les questions
+                Posez-lui toutes les questions
               </p>
             </div>
           </div>
-          <button 
+          <button
             onClick={() => {
-               setVoiceEnabled(!voiceEnabled);
-               window.speechSynthesis.cancel();
+              setVoiceEnabled(!voiceEnabled);
+              window.speechSynthesis.cancel();
             }}
             className={`p-2 rounded-full transition-colors ${voiceEnabled ? 'text-accent-500 hover:bg-slate-200' : 'text-slate-400 hover:bg-slate-200'}`}
             title={voiceEnabled ? "Désactiver la voix" : "Activer la voix"}
@@ -259,8 +260,8 @@ const Chatbot: React.FC = () => {
         {/* Messages Area */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50 scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
           {messages.map((msg, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               {msg.role === 'model' && (
@@ -268,11 +269,11 @@ const Chatbot: React.FC = () => {
                   <Bot size={14} className="text-accent-500" />
                 </div>
               )}
-              
-              <div 
+
+              <div
                 className={`max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed shadow-sm
-                  ${msg.role === 'user' 
-                    ? 'bg-primary-600 text-white rounded-tr-none' 
+                  ${msg.role === 'user'
+                    ? 'bg-primary-600 text-white rounded-tr-none'
                     : 'bg-white text-slate-700 rounded-tl-none border border-slate-200'}
                 `}
               >
@@ -292,9 +293,9 @@ const Chatbot: React.FC = () => {
                 <Loader2 size={14} className="text-accent-500 animate-spin" />
               </div>
               <div className="bg-white px-4 py-2 rounded-2xl rounded-tl-none border border-slate-200 flex items-center gap-1">
-                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms'}}></span>
-                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms'}}></span>
-                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms'}}></span>
+                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                <span className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
               </div>
             </div>
           )}
@@ -305,7 +306,7 @@ const Chatbot: React.FC = () => {
         <div className="p-4 bg-white border-t border-slate-200">
           <div className="relative flex items-center gap-2">
             <div className="relative flex-1">
-                <input
+              <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -313,29 +314,28 @@ const Chatbot: React.FC = () => {
                 placeholder={isListening ? "Écoute en cours..." : "Posez une question..."}
                 className={`w-full bg-slate-50 text-slate-800 border border-slate-200 rounded-full py-3 pl-4 pr-12 focus:outline-none focus:border-accent-400 focus:ring-1 focus:ring-accent-400 transition-all placeholder:text-slate-400 ${isListening ? 'border-accent-400 ring-1 ring-accent-400 bg-red-50' : ''}`}
                 disabled={isLoading}
-                />
-                <button
+              />
+              <button
                 onClick={() => handleSend()}
                 disabled={!input.trim() || isLoading}
                 className="absolute right-1.5 top-1.5 p-2 bg-accent-500 text-white rounded-full hover:bg-accent-600 disabled:opacity-50 disabled:hover:bg-accent-500 transition-colors"
-                >
+              >
                 <Send size={16} />
-                </button>
+              </button>
             </div>
-            
+
             {/* Mic Button */}
             {recognitionRef.current && (
-                <button
-                    onClick={toggleListening}
-                    className={`p-3 rounded-full transition-all duration-300 ${
-                        isListening 
-                        ? 'bg-red-500 text-white animate-pulse scale-110' 
-                        : 'bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800'
-                    }`}
-                    title="Parler à l'IA"
-                >
-                    <Mic size={20} />
-                </button>
+              <button
+                onClick={toggleListening}
+                className={`p-3 rounded-full transition-all duration-300 ${isListening
+                    ? 'bg-red-500 text-white animate-pulse scale-110'
+                    : 'bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800'
+                  }`}
+                title="Parler à l'IA"
+              >
+                <Mic size={20} />
+              </button>
             )}
           </div>
           <p className="text-[10px] text-center text-slate-400 mt-2 flex items-center justify-center gap-1">
