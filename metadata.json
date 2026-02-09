@@ -1,0 +1,7 @@
+{
+  "name": "Isaac Derhy - Interactive CV",
+  "description": "Portefeuille professionnel et CV interactif pour Isaac Derhy, Ingénieur Système et IA.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
