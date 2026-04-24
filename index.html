@@ -99,6 +99,115 @@
     .delay-300 {
       animation-delay: 300ms;
     }
+
+    /* =========================
+       Print / PDF stylesheet
+       Used by browser print AND by headless Chrome
+       when generating cv-{fr,en,zh}.pdf
+       ========================= */
+    @media print {
+      @page {
+        size: A4;
+        margin: 10mm 8mm;
+      }
+
+      html,
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Hide everything flagged no-print (navbar, CTA buttons, etc.) */
+      .no-print,
+      nav {
+        display: none !important;
+      }
+
+      /* Shrink the hero so it doesn't take a full A4 page */
+      main > div:first-of-type {
+        min-height: 0 !important;
+      }
+
+      main {
+        max-width: 100% !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Hero wrapper: remove the 90vh minimum + top padding meant for the navbar */
+      .min-h-\[90vh\] {
+        min-height: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 1rem !important;
+      }
+
+      /* Remove the blinking typewriter caret in print */
+      .animate-pulse {
+        animation: none !important;
+      }
+
+      /* Skill progress bars rely on IntersectionObserver to animate in.
+         In headless print there is no scroll, so force their target width. */
+      .print-force-width {
+        width: var(--print-width) !important;
+        transition: none !important;
+      }
+
+      /* Scroll-reveal cards: make sure they always show at full opacity in print */
+      .opacity-0 {
+        opacity: 1 !important;
+      }
+
+      .translate-y-10 {
+        transform: none !important;
+      }
+
+      /* Keep each section on its own page-flow block */
+      section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Avoid breaking timeline cards and project cards across pages */
+      .group {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Reduce vertical gaps a bit to pack content better on A4 */
+      .space-y-8 > * + * {
+        margin-top: 1.25rem !important;
+      }
+
+      .space-y-12 > * + * {
+        margin-top: 1.5rem !important;
+      }
+
+      .py-12 {
+        padding-top: 1.25rem !important;
+        padding-bottom: 1.25rem !important;
+      }
+
+      .md\:py-16 {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+      }
+
+      .pb-20 {
+        padding-bottom: 0 !important;
+      }
+
+      .pt-20 {
+        padding-top: 0 !important;
+      }
+
+      /* Footer promo card is a CTA → hide in print */
+      footer .bg-slate-900 {
+        display: none !important;
+      }
+    }
   </style>
 
   <link rel="stylesheet" href="/index.css">

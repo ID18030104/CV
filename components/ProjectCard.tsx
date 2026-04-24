@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ProjectItem } from '../types';
 import { ExternalLink, Github } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 const ProjectCard: React.FC<ProjectItem> = ({ name, role, description, link }) => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -68,7 +70,7 @@ const ProjectCard: React.FC<ProjectItem> = ({ name, role, description, link }) =
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-500 hover:text-accent-600 mt-4 uppercase tracking-wider no-print"
         >
-          Voir le projet <ExternalLink size={12} />
+          {t.titles.viewProject} <ExternalLink size={12} />
         </a>
       )}
       {link && (

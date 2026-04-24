@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { SKILLS } from '../constants';
+import { useLanguage } from '../LanguageContext';
 import { Brain, Code2, Server, TrendingUp } from 'lucide-react';
 
 const ICONS = [Brain, Code2, Server, TrendingUp];
 
 const SkillsInteractive: React.FC = () => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -15,7 +16,7 @@ const SkillsInteractive: React.FC = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -31,7 +32,7 @@ const SkillsInteractive: React.FC = () => {
 
   return (
     <div ref={sectionRef} className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-      {SKILLS.map((category, idx) => {
+      {t.skills.map((category, idx) => {
         const Icon = ICONS[idx] || Brain;
         return (
           <div
@@ -59,18 +60,15 @@ const SkillsInteractive: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Progress Bar Background */}
                   <div className="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
-                    {/* Animated Progress Bar */}
                     <div
                       className="h-full rounded-full bg-gradient-to-r from-primary-400 to-accent-400 relative print-force-width"
                       style={{
                         '--print-width': `${skill.level}%`,
                         width: isVisible ? `${skill.level}%` : '0%',
-                        transition: `width 1s ease-out ${sIdx * 0.1}s`
+                        transition: `width 1s ease-out ${sIdx * 0.1}s`,
                       } as React.CSSProperties}
                     >
-                      {/* Shine effect - hidden in print */}
                       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/20 to-transparent no-print"></div>
                     </div>
                   </div>

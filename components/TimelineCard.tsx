@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Calendar, MapPin } from 'lucide-react';
+import { Calendar, MapPin, ExternalLink } from 'lucide-react';
 
 interface TimelineCardProps {
   title: string; // Company or School
@@ -7,9 +7,10 @@ interface TimelineCardProps {
   period: string;
   location?: string;
   description: string[];
+  titleUrl?: string; // Optional URL to make the title clickable
 }
 
-const TimelineCard: React.FC<TimelineCardProps> = ({ title, subtitle, period, location, description }) => {
+const TimelineCard: React.FC<TimelineCardProps> = ({ title, subtitle, period, location, description, titleUrl }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -72,7 +73,19 @@ const TimelineCard: React.FC<TimelineCardProps> = ({ title, subtitle, period, lo
       <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-2">
         <div>
           <h3 className="text-xl font-bold text-slate-800 group-hover:text-accent-500 transition-colors">{subtitle}</h3>
-          <h4 className="text-lg text-primary-600 font-semibold">{title}</h4>
+          {titleUrl ? (
+            <a
+              href={titleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg text-primary-600 font-semibold inline-flex items-center gap-1.5 hover:text-accent-500 hover:underline underline-offset-4 decoration-accent-400 transition-colors"
+            >
+              {title}
+              <ExternalLink size={14} className="opacity-70" />
+            </a>
+          ) : (
+            <h4 className="text-lg text-primary-600 font-semibold">{title}</h4>
+          )}
         </div>
         <div className="text-slate-500 text-sm mt-1 md:mt-0 flex flex-col md:items-end font-medium">
           <div className="flex items-center gap-1.5">
