@@ -5,7 +5,6 @@ import Section from './components/Section';
 import TimelineCard from './components/TimelineCard';
 import ProjectCard from './components/ProjectCard';
 import SkillsInteractive from './components/SkillsInteractive';
-import Chatbot from './components/Chatbot';
 import {
   PROFILE_TEXT,
   EXPERIENCES,
@@ -186,9 +185,6 @@ const App: React.FC = () => {
             </div>
           </footer>
         </div>
-
-        {/* Chatbot */}
-        <Chatbot />
       </main>
     </div>
   );

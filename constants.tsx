@@ -85,9 +85,20 @@ export const SKILLS: SkillCategory[] = [
 
 export const EXPERIENCES: ExperienceItem[] = [
   {
+    company: "ia-sup.fr",
+    role: "Directeur Technique (CTO)",
+    period: "Mars 2026 – Présent",
+    location: "Paris",
+    description: [
+      "Développement de la plateforme de A à Z (end-to-end).",
+      "Recherche sur l’impact de l’IA sur le développement de carrière et le marché du travail en France.",
+      "Pilotage technique : architecture, choix de stack, qualité, delivery."
+    ]
+  },
+  {
     company: "Sairen",
     role: "AI Developer / Prompt Engineer (Alternance)",
-    period: "Nov. 2025 – aujourd’hui",
+    period: "Nov. 2025 – Mars 2026",
     location: "Paris (sur site)",
     description: [
       "Conception et développement d’agents IA (chatbots & voice agents).",
@@ -120,6 +131,17 @@ export const EXPERIENCES: ExperienceItem[] = [
       "Veille technologique IA : stack, modèles, patterns.",
       "Déploiement : configuration serveurs, Google Cloud.",
       "Documentation technique et guides d'usage."
+    ]
+  },
+  {
+    company: "$BERRY",
+    role: "Co-fondateur / Développeur Web3",
+    period: "Nov. 2024 – Fév. 2025",
+    location: "",
+    description: [
+      "Création d’une cryptomonnaie avec une market cap de plusieurs millions.",
+      "Conception de la tokenomics et gestion de la liquidité.",
+      "Design de l’écosystème et construction de la roadmap produit."
     ]
   },
   {
@@ -235,8 +257,8 @@ export const EDUCATION: EducationItem[] = [
   },
   {
     school: "Certifications Internationales",
-    degree: "Estonian Business School & Regent's University London",
-    period: "Mars 2024 & Mars 2025",
+    degree: "Estonian Business School, Regent's University London & University of New York in Prague",
+    period: "Mars 2024, Mars 2025 & Mars 2026",
     details: []
   },
   {
