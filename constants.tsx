@@ -768,7 +768,7 @@ export const TRANSLATIONS: Record<Lang, Translation> = {
           { name: "Linux 管理", level: 85, details: "服务、权限、Bash、排障" },
           { name: "网络与协议", level: 80, details: "TCP/IP、子网、DNS、HTTP、SSH" },
           { name: "安全与认证", level: 80, details: "TLS 证书、SSO（IdP/SP）、VPN" },
-          { name: "基础架构", level: 75, details: "Docker、虚拟化（VM）、云基础" },
+          { name: "基础架构", level: 75, details: "Docker、虚拟化（VM）、云计算基础" },
         ],
       },
       {
@@ -776,7 +776,7 @@ export const TRANSLATIONS: Record<Lang, Translation> = {
         skills: [
           { name: "商业策略", level: 95, details: "拓客、需求挖掘、成交、谈判" },
           { name: "项目管理", level: 90, details: "范围界定、优先级、敏捷、客户关系" },
-          { name: "数据采集", level: 90, details: "信息丰富化、分群、爬取" },
+          { name: "数据采集", level: 90, details: "数据丰富化、分群、爬取" },
           { name: "团队管理", level: 85, details: "招聘、培训、团队辅导" },
         ],
       },
@@ -826,7 +826,7 @@ export const TRANSLATIONS: Record<Lang, Translation> = {
         period: "2025年9月 – 2025年10月",
         location: "巴黎（现场）",
         description: [
-          "AI 平台开发:模块、测试、迭代。",
+          "AI 平台开发：模块、测试、迭代。",
           "AI 技术跟踪：技术栈、模型、模式。",
           "部署：服务器配置、Google Cloud。",
           "技术文档与使用指南。",
@@ -849,7 +849,7 @@ export const TRANSLATIONS: Record<Lang, Translation> = {
         period: "2024年5月 – 2024年9月",
         location: "",
         description: [
-          "管理 20 名电话销售团队：辅导、话术、报告。",
+          "带领 20 人的电话销售团队：辅导、话术、报告。",
           "运营结构化：流程与目标。",
         ],
       },
@@ -914,7 +914,7 @@ export const TRANSLATIONS: Record<Lang, Translation> = {
         name: "AI 客户关系工作流",
         role: "自动化",
         description: [
-          "辅助客户关系的工作流(资格评估、摘要)。",
+          "辅助客户关系的工作流（资格评估、摘要）。",
           "提升处理速度与一致性。",
         ],
       },
@@ -1006,7 +1006,7 @@ export const TRANSLATIONS: Record<Lang, Translation> = {
       "创业",
       "格斗运动",
       "健身",
-      "匹克球 (Padel)",
+      "帕德尔网球 (Padel)",
       "足球",
       "电子竞技",
       "音乐",
